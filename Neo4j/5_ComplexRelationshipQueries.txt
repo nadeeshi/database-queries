@@ -1,0 +1,23 @@
+
+// Return everything that matches of student node with the name Alia that has studied abroad
+MATCH (s:Student{first: 'Alia'}) -- (c:Country)
+RETURN *
+
+
+// Return everything that matches of student node with the name Alia that has studied abroad
+// Same above results can take using this cypher query also
+MATCH (s:Student{first: 'Alia'}) - [:STUDIED_ABROAD_IN] -> (c:Country)
+RETURN *
+
+
+// Return all students with a gpa above 3.98
+MATCH(s:Student) - [r:OBTAINED] -> ()
+WHERE r.gpa > 3.98
+RETURN s.first, s.last, r.gpa
+
+
+// Return all sttudents with a firstname Alia with a GPA 3.0 above
+// We can change our referencing using AS keyword - result table data column headers will change accordingly
+MATCH(s:Student) - [r:OBTAINED] -> ()
+WHERE r.gpa > 3.0 AND s.first = 'Alia'
+RETURN s.first AS Name, s.last AS `Family Name`, r.gpa AS GPA
