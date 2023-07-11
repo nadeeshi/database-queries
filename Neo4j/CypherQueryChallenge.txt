@@ -1,0 +1,23 @@
+
+// Create Learner type node and set property name, as key value pair
+// Create Greeting type node and set property message
+// Connect those above two nodes as relationship(with direction) from learner to hello with adding SAYS type relationship
+CREATE(learner:Learner {name:'Lju'}),
+(hello:Greeting {message:'Hello World!'}),
+(learner) - [r:SAYS] -> (hello)
+
+ 
+// Load learner nodes
+MATCH(me:Learner)
+RETURN me
+
+ 
+
+CREATE(nadee:Learner {name:'Nadee'}),
+(niceMessage:Greeting {message: 'Nice to meeet you!'}),
+(nadee) - [r:SAYS] -> (niceMessage);
+
+ 
+// Load learner nodes
+MATCH(learner:Learner)
+RETURN learner
