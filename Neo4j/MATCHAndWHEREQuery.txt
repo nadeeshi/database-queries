@@ -1,0 +1,35 @@
+
+// Return all nodes in the database
+MATCH (n) return n
+
+
+// Return all nodes in the database (limit to 10 results) - return first 10 raws
+MATCH (n) 
+RETURN n LIMIT 10
+
+
+// Return all nodes that have a Student label (limit to 10 results) - return first 10 raws
+MATCH (n:Student) 
+RETURN n LIMIT 10
+
+
+// Return all nodes in the database property first with value 'Alia'
+MATCH (n {first:'Alia'}) 
+RETURN n
+
+// Return all nodes that have a Student label and property first with value 'Alia'
+// This query should be faster when we use a node label than above one
+MATCH (n:Student {first:'Alia'}) 
+RETURN n
+
+
+// Return all nodes that have a Student label and property first with value 'Alia'
+// Using WHERE option
+MATCH (n:Student)
+WHERE n.first = 'Alia'
+RETURN n
+
+// Return all YEAR nodes where after 2005
+MATCH (n:Year)
+WHERE n.value > 2005
+RETURN n

@@ -2,8 +2,8 @@
 // Delete data (if any) - delete all nodes and relationships
 MATCH (n) DETACH DELETE n;
 
-// Create Learner type node and set property name, as key value pair
-// Create Greeting type node and set property message
+// Create Learner label node and set property name, as key value pair
+// Create Greeting label node and set property message
 // Connect those above two nodes as relationship from learner to hello with adding SAYS type relationship
 CREATE(learner:Learner {name:'Lju'}),
 (hello:Greeting {message:'Hello World!'}),
