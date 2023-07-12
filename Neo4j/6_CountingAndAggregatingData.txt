@@ -39,3 +39,30 @@ RETURN size(students) AS Students, c.name AS Country ORDER BY Students DESC
 MATCH(s:Student) - [:STUDIED_ABROAD_IN] -> (c:Country)
 WITH collect(s) AS students, c WHERE size(students) >=150
 RETURN size(students) AS `Number of Students`, c.name AS Country  
+
+
+// Find how many students in the database
+MATCH (s:Student)
+RETURN count(s)
+
+
+// Find how many students have signed up to the newsletter
+MATCH (s:Student {newsletter: 'YES'})
+RETURN count(s)
+
+// Find how many students have studied in aboard
+MATCH (s:Student) - [:STUDIED_ABROAD_IN] -> (c:Country)
+RETURN count(s)
+
+
+// Find what is the most common GPA score
+MATCH (s:Student) - [r:OBTAINED] -> (:Grade)
+WITH collect(s) AS students, r.gpa AS gpa
+RETURN size(students) AS common, gpa ORDER BY common DESC
+
+
+// Find how many students from Georgia have gotten an A grade in Animation 
+MATCH (s:Student) - [:FROM] -> (:State {name: 'Georgia'}),
+      (s) - [:STUDIED] -> (:Program {name: 'Animation'}),
+      (s) - [:OBTAINED] -> (:Grade {grade: 'A'})
+RETURN count(s) 
