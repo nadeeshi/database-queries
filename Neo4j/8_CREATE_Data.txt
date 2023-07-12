@@ -1,0 +1,23 @@
+
+// Different types of nodes
+// Create blank node with no label or properties
+CREATE()
+
+// Create a node with label Learner but no properties
+CREATE(:Learner)
+
+// Create a node with label Learner and property name = Lju
+CREATE(:Learner {name: 'Lju'})
+
+CREATE(:Learner {name: 'Alia'})
+
+
+// Create a relationship between exisiting nodes
+MATCH (lju:Learner {name: 'Lju'})
+MATCH (alia:Learner {name: 'Alia'})
+CREATE (lju) - [:KNOWS {since:20210101}] -> (alia)
+
+
+// Create two nodes and a relationship in one line
+CREATE (:Learner {name: 'Jo'}) - [:KNOWS] -> (:Learner {name: 'Su'})
+
